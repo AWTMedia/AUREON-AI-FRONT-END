@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="en" class="dark">
   <head>
+
+    <!-- GitHub Pages deep-link fix -->
+    <script>
+      if (sessionStorage.redirect) {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        window.history.replaceState(null, "", redirect);
+      }
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aureon AI Engine Console | Trading Analytics Dashboard</title>
@@ -19,6 +29,8 @@
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- IMPORTANT: Use relative path because Vite sets base in vite.config.ts -->
+    <script type="module" src="/AUREON-AI-FRONT-END/src/main.tsx"></script>
   </body>
 </html>
