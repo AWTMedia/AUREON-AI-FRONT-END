@@ -4,16 +4,15 @@
     <meta charset="utf-8" />
     <title>Redirecting…</title>
     <script>
-      // Capture attempted deep-link path (e.g. /candles)
-      sessionStorage.redirect = location.pathname.replace("/AUREON-AI-FRONT-END", "") 
-                               + location.search 
-                               + location.hash;
+      // Save attempted URL (ex: /candles)
+      sessionStorage.redirect =
+        location.pathname.replace("/AUREON-AI-FRONT-END", "") +
+        location.search +
+        location.hash;
 
-      // Redirect to GitHub Pages root
-      window.location.replace("/AUREON-AI-FRONT-END/index.html");
+      // Redirect back to React entrypoint
+      window.location.replace("/AUREON-AI-FRONT-END/");
     </script>
   </head>
-  <body>
-    Redirecting…
-  </body>
+  <body>Redirecting…</body>
 </html>
