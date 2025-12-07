@@ -12,7 +12,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,18 +24,14 @@ jobs:
           node-version: 18
           cache: npm
 
-      - name: Load .env.production variables
-        run: |
-          export $(grep -v '^#' .env.production | xargs)
-
-          echo "VITE_SUPABASE_URL=$VITE_SUPABASE_URL" >> $GITHUB_ENV
-          echo "VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY" >> $GITHUB_ENV
-
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build Vite site
         run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
