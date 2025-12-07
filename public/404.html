@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=/" />
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <script>
+      // Fix deep linking on GitHub Pages
+      // Saves the route that triggered the 404
+      sessionStorage.redirect = location.pathname + location.search + location.hash;
+
+      // Redirect to base of your site
+      window.location.replace("/AUREON-AI-FRONT-END/");
+    </script>
   </head>
+  <body>
+    Redirecting…
+  </body>
 </html>
