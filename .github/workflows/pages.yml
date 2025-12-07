@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # Ensures correct build
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -25,18 +25,20 @@ jobs:
           node-version: 18
           cache: npm
 
+      - name: Load .env.production variables
+        run: |
+          export $(grep -v '^#' .env.production | xargs)
+
+          echo "VITE_SUPABASE_URL=$VITE_SUPABASE_URL" >> $GITHUB_ENV
+          echo "VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: npm install
-
-      - name: Create .env.production file from GitHub Secrets
-        run: |
-          echo "VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}" >> .env.production
-          echo "VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}" >> .env.production
 
       - name: Build
         run: npm run build
 
-      - name: Upload GitHub Pages artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -44,7 +46,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
