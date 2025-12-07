@@ -28,7 +28,11 @@ const App = () => (
         <Toaster />
         <Sonner />
 
-        {/* IMPORTANT: Fix GitHub Pages routing */}
+        {/* 
+          IMPORTANT:
+          - basename ensures ALL routes stay inside /AUREON-AI-FRONT-END
+          - prevents sidebar links or redirects from going to awtmedia.github.io/
+        */}
         <BrowserRouter basename="/AUREON-AI-FRONT-END">
           <MainLayout>
             <Routes>
@@ -37,6 +41,8 @@ const App = () => (
               <Route path="/signals" element={<Signals />} />
               <Route path="/ai" element={<AiReasoning />} />
               <Route path="/events" element={<SystemEvents />} />
+
+              {/* MUST remain last */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </MainLayout>
