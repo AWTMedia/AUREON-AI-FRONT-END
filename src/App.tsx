@@ -27,7 +27,9 @@ const App = () => (
       <FilterProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+
+        {/* IMPORTANT: Fix GitHub Pages routing */}
+        <BrowserRouter basename="/AUREON-AI-FRONT-END">
           <MainLayout>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -39,6 +41,7 @@ const App = () => (
             </Routes>
           </MainLayout>
         </BrowserRouter>
+
       </FilterProvider>
     </TooltipProvider>
   </QueryClientProvider>
