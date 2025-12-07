@@ -4,15 +4,16 @@
     <meta charset="utf-8" />
     <title>Redirecting…</title>
     <script>
-      // Save the original path user tried to open (e.g. /dashboard)
-      sessionStorage.redirect = location.pathname + location.search + location.hash;
+      // Capture attempted deep-link path (e.g. /candles)
+      sessionStorage.redirect = location.pathname.replace("/AUREON-AI-FRONT-END", "") 
+                               + location.search 
+                               + location.hash;
 
-      // Redirect to GitHub Pages base URL
-      window.location.replace("/AUREON-AI-FRONT-END/");
+      // Redirect to GitHub Pages root
+      window.location.replace("/AUREON-AI-FRONT-END/index.html");
     </script>
   </head>
   <body>
     Redirecting…
   </body>
 </html>
-
