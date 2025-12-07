@@ -4,11 +4,10 @@
     <meta charset="utf-8" />
     <title>Redirecting…</title>
     <script>
-      // Fix deep linking on GitHub Pages
-      // Saves the route that triggered the 404
+      // Save the original path user tried to open (e.g. /dashboard)
       sessionStorage.redirect = location.pathname + location.search + location.hash;
 
-      // Redirect to base of your site
+      // Redirect to GitHub Pages base URL
       window.location.replace("/AUREON-AI-FRONT-END/");
     </script>
   </head>
